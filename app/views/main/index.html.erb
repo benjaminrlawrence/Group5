@@ -1,2 +1,17 @@
-<h1>Main#index</h1>
-<p>Find me in app/views/main/index.html.erb</p>
+<h1>Search</h1>
+<p>
+  Welcome to the Twitter Query Engine. Here is where you enter your search to
+  start crawling through Twitter. Select the type of search you would like to
+  conduct, and then enter your query.
+</p>
+<%= radio_button_tag(:search, "general") %>
+<%= label_tag(:search_general, "General") %>
+<%= radio_button_tag(:search, "hashtag") %>
+<%= label_tag(:search_hashtag, "Hashtag") %>
+<%= radio_button_tag(:search, "twitter_user") %>
+<%= label_tag(:search_twitter_user, "User") %>
+<%= form_tag("/search", method: "get") do %>
+    <%= label_tag(:search_string, "Search for:") %>
+    <%= text_field_tag(:search_string) %>
+    <%= submit_tag("Search") %>
+<% end %>
