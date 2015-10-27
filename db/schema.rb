@@ -11,15 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151027020143) do
-
-  create_table "queries", force: :cascade do |t|
-    t.string   "search_string"
-    t.string   "type"
-    t.string   "email"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
+ActiveRecord::Schema.define(version: 20151020013455) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

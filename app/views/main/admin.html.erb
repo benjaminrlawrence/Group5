@@ -1,0 +1,16 @@
+<h4>Change Password</h4>
+
+<%= form_tag("/change", method: "get") do %>
+    <%= label_tag(:old_pass, "Old Password:") %>
+    <%= text_field_tag(:old_pass) %>
+    <%= label_tag(:new_pass, "New Password:") %>
+    <%= text_field_tag(:new_pass) %>
+    <%= label_tag(:confirm_new_pass, "Confirm:") %>
+    <%= text_field_tag(:confirm_new_pass) %>
+    <%= submit_tag("Submit") %>
+<% end %>
+
+
+
+<%= link_to 'Home', root_path, class: 'btn-sm btn-primary' %>
+
