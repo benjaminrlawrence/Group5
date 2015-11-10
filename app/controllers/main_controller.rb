@@ -3,6 +3,8 @@ class MainController < ApplicationController
   end
 
   def admin
+  end
+  def search
 
   end
 end
