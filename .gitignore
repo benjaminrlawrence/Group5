@@ -16,4 +16,4 @@
 !/log/.keep
 /tmp
 /db/schema.rb
-/.idea
+/.idea/*
