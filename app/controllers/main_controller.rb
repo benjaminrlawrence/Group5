@@ -4,7 +4,12 @@ class MainController < ApplicationController
 
   def admin
   end
-  def search
 
+  def search
+    query = Query.create()
+    redirect_to :action => "result"
+  end
+
+  def result
   end
 end
