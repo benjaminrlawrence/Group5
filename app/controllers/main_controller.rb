@@ -19,6 +19,6 @@ class MainController < ApplicationController
       config.access_token        = "2512534718-1dHuDxdtZphrkoKA8TJqAsvoc23kxBhRmXJ42BF"
       config.access_token_secret = "5wnW2BhxjPLWYefCSVsvqdfRYKewuSHsZEZhaB7drJ2zF"
     end
-   @tweets = client.search("to:justinbieber marry me", :result_type => "recent").take(3)
+   @tweets = client.search("to:justinbieber marry me", :result_type => "recent").take(5)
   end
 end
