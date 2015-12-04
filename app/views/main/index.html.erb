@@ -5,11 +5,11 @@
   conduct, and then enter your query.
 </p>
 <%= form_for(@query, :controller => "main", :action => "search", :method => "post") do |f| %>
-    <%= f.radio_button_tag(:type, "general") %>
+    <%= f.radio_button_tag(:query_type, "general") %>
     <%= label_tag(:type_general, "General") %>
-    <%= f.radio_button_tag(:type, "hashtag") %>
+    <%= f.radio_button_tag(:query_type, "hashtag") %>
     <%= label_tag(:type_hashtag, "Hashtag") %>
-    <%= f.radio_button_tag(:type, "twitter_user") %>
+    <%= f.radio_button_tag(:query_type, "twitter_user") %>
     <%= label_tag(:type_twitter_user, "User") %>
     </br>
     <%= label_tag(:search_string, "Search for:") %>
