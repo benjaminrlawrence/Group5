@@ -1,12 +1,8 @@
 <%= form_for :query, :url=>{:action=>"search"} do |f| %>
     
         General Search: <%= f.text_field(:type_general) %> <br>
-		Hashtag Search: <%= f.text_field(:type_hashtag) %> <br>
-        (Please include the # symbol) <br>
-		User Search:    <%= f.text_field(:type_twitter_user) %> <br>
-        (Please enter the username without the @ symbol) <br>
-        Tagged User Search: <%= f.text_field(:type_tagged_twitter_user) %> <br>
-        (Please enter the username without the @ symbol) <br>
+		<%= label_tag(:entities, "Return entities?") %>
+        <%= check_box_tag(:entities) %> <br>
         Number of Results: <%= f.text_field(:number_results) %> <br>
         (max 100) <br>
         <%= label_tag(:recent, "Return only recent results?") %>

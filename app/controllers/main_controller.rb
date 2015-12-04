@@ -10,13 +10,11 @@ class MainController < ApplicationController
 
     if user_signed_in?
 
-      general = :type_general
-      hashtag = :type_hashtag
-      user_search = :type_twitter_user
-      tagged_search = :type_tagged_twitter_user
-      num_results = :number_results
-      recent = :recent
-      since = :search_date
+		cookies[:general] = params[:query][:type_general]
+		cookies[:entities] = params[:query][:entities]
+		cookies[:num_results] = params[:query][:number_results]
+		cookies[:recent] = params[:query][:recent]
+		cookies[:since] = params[:query][:search_date]
 
 
       search = Query.create()
@@ -24,10 +22,7 @@ class MainController < ApplicationController
       redirect_to :action => "user_result", :id => 1
     else
       cookies[:general] = params[:query][:type_general]
-
-      cookies[:hashtag] = params[:query][:type_hashtag]
-      cookies[:user_search] = params[:query][:type_twitter_user]
-      cookies[:tagged_search] = params[:query][:type_tagged_twitter_user]
+	  cookies[:entities] = params[:query][:entities]
       cookies[:num_results] = params[:query][:number_results]
       cookies[:recent] = params[:query][:recent]
       cookies[:since] = params[:query][:search_date]
@@ -45,7 +40,8 @@ class MainController < ApplicationController
       config.access_token        = "2512534718-1dHuDxdtZphrkoKA8TJqAsvoc23kxBhRmXJ42BF"
       config.access_token_secret = "5wnW2BhxjPLWYefCSVsvqdfRYKewuSHsZEZhaB7drJ2zF"
     end
-   @tweets = client.search(cookies[:general], :result_type => "recent").take(cookies[:num_results].to_i)
+	# @tweets = client.search(cookies[:general], :since=> => cookies[:since], :include_entities=>cookies[:entities], :count=>cookies[:num_results].to_i)
+    @tweets = client.search(cookies[:general], :result_type => "recent").take(cookies[:num_results].to_i)
   end
 
   def user_result
