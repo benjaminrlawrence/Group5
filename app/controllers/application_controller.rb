@@ -4,4 +4,5 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   # This is a test.
   protect_from_forgery with: :exception
+
 end
