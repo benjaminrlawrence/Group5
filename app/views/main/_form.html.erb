@@ -2,7 +2,17 @@
     
         General Search: <%= f.text_field(:type_general) %> <br>
 		Hashtag Search: <%= f.text_field(:type_hashtag) %> <br>
+        (Please include the # symbol) <br>
 		User Search:    <%= f.text_field(:type_twitter_user) %> <br>
-        String Search:  <%= f.text_field(:search_query) %> <br>
+        (Please enter the username without the @ symbol) <br>
+        Tagged User Search: <%= f.text_field(:type_tagged_twitter_user) %> <br>
+        (Please enter the username without the @ symbol) <br>
+        Number of Results: <%= f.text_field(:number_results) %> <br>
+        (max 100) <br>
+        <%= label_tag(:recent, "Return only recent results?") %>
+        <%= check_box_tag(:recent) %> <br>
+        Return results since: <%= f.text_field(:search_date) %> <br>
+        (YYYY-MM-DD) <br>
+
 		<%= submit_tag "Search"%>
 <% end %>

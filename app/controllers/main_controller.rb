@@ -7,7 +7,8 @@ class MainController < ApplicationController
 
   def search
 
-    @query = Query.create()
+
+    search = Query.create()
     redirect_to :action => "result", :id => 1
   end
 
