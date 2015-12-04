@@ -1,4 +1,20 @@
 <h1>Result Page</h1>
+<br />
 <p>
   This is the result of your query.
 </p>
+
+<table class="table responsive">
+  <tr>
+    <th>Query Type</th>
+    <th>Searched Word</th>
+    <th>User ID</th>
+  </tr>
+  <% @queries.each do |query| %>
+      <tr>
+      <td><%= query.query_type %></td>
+      <td><%= query.search_query %></td>
+      <td><%= query.user_id %></td>
+      </tr>
+  <% end %>
+</table>

@@ -14,11 +14,11 @@
 ActiveRecord::Schema.define(version: 20151110220553) do
 
   create_table "queries", force: :cascade do |t|
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "type"
-    t.string   "search_query"
-    t.integer  "user_id"
+    t.text    "created_at",   null: false
+    t.text    "updated_at",   null: false
+    t.text    "query_type"
+    t.text    "search_query"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
