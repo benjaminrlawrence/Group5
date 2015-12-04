@@ -4,15 +4,5 @@
   start crawling through Twitter. Select the type of search you would like to
   conduct, and then enter your query.
 </p>
-<%= form_for(@query, :controller => "main", :action => "search", :method => "post") do |f| %>
-    <%= f.radio_button_tag(:query_type, "general") %>
-    <%= label_tag(:type_general, "General") %>
-    <%= f.radio_button_tag(:query_type, "hashtag") %>
-    <%= label_tag(:type_hashtag, "Hashtag") %>
-    <%= f.radio_button_tag(:query_type, "twitter_user") %>
-    <%= label_tag(:type_twitter_user, "User") %>
-    </br>
-    <%= label_tag(:search_string, "Search for:") %>
-    <%= f.text_field_tag(:search_query) %>
-    <%= submit_tag("Search") %>
-<% end %>
+
+<%= render 'form' %>
