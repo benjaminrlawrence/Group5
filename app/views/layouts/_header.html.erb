@@ -1,0 +1,26 @@
+<!-- Static navbar -->
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="col-xs-2 col-md-2"></div>
+  <div class="container col-xs-8 col-md-8">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand">Twitter Query Engine</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><%= link_to "Home",   root_path %></li>
+        <li><%= link_to "Search",   main_search_path %></li>
+        <li><%= link_to "Manage Account",   main_admin_path %></li>
+      </ul>
+      <div class="nav navbar-nav navbar-text navbar-right" style="padding: 0px 15px">
+        <%= render 'layouts/user_widget' %>
+      </div>
+    </div><!--/.nav-collapse -->
+  </div>
+  <div class="col-xs-2 col-md-2"></div>
+</nav>

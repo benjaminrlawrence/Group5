@@ -1,27 +1,44 @@
 class MainController < ApplicationController
 
   def index
+    if user_signed_in?
+      session[:current_user_id] = current_user.id
+      @last = Query.find_by_user_id(current_user.id)
+
+    end
+    #@last = Query.find(1);
   end
 
   def admin
   end
 
   def search
+  end
+
+  def query
 
     if user_signed_in?
 
-		cookies[:general] = params[:query][:type_general]
-		cookies[:entities] = params[:query][:entities]
-		cookies[:num_results] = params[:query][:number_results]
-		cookies[:recent] = params[:query][:recent]
-		cookies[:since] = params[:query][:search_date]
+      cookies[:general] = params[:query][:keyword]
+      cookies[:entities] = params[:query][:entities]
+      cookies[:num_results] = params[:query][:number_results]
+      cookies[:recent] = params[:query][:recent]
+      cookies[:since] = params[:query][:search_date]
 
+      user_id = current_user.id
 
-      search = Query.create()
-      user_id = session[:current_user_id]
-      redirect_to :action => "user_result", :id => 1
+      search = Query.new
+      search.created_at = DateTime.now
+      search.search_query = params[:query][:keyword]
+      search.query_type = 'General'
+      search.user_id = user_id
+      search.searched_limit = params[:query][:number_results]
+      search.searched_date = params[:query][:search_date]
+      search.save
+
+      redirect_to :action => "result"
     else
-      cookies[:general] = params[:query][:type_general]
+      cookies[:general] = params[:query][:keyword]
 	    cookies[:entities] = params[:query][:entities]
       cookies[:num_results] = params[:query][:number_results]
       cookies[:recent] = params[:query][:recent]

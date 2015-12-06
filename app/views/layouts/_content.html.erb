@@ -1,0 +1,10 @@
+<div class="container-fluid content">
+  <% if notice.present? %>
+      <p class="warning"><%= notice %></p>
+  <% end %>
+  <% if alert.present? %>
+      <p class="alert warning"><%= alert %></p>
+  <% end %>
+
+  <%= yield %>
+</div>

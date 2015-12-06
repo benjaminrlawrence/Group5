@@ -2,7 +2,11 @@ source 'https://rubygems.org'
 
 # twiter bootsrap
 gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap-datepicker-rails'
 gem 'autoprefixer-rails'
+
+# datatables
+gem 'jquery-datatables-rails'
 
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

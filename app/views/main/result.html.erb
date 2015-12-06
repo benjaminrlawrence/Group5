@@ -1,20 +1,42 @@
+<% content_for :title do %>Results<% end %>
+
 <h1>Result Page</h1>
 <br />
 <p>
-  This is the result of your query.
+  This is the result of your query. You searched for the word(s): <em><%= "#{cookies[:general]}" %></em>
 </p>
-
-<table class="table responsive">
+<table id="result-table" class="table" style="width: 100%; height: 100%">
+  <thead>
   <tr>
-    <th>Searched Word(s)</th>
     <th>Tweets</th>
     <th>Username</th>
   </tr>
+  </thead>
+  <tbody>
     <% @tweets.each do |tweet| %>
       <tr>
-        <td><%= "#{cookies[:general]}" %></td>
         <td><%= "#{tweet.text}" %></td>
         <td><%= link_to "#{tweet.user.screen_name}", "https://www.twitter.com/#{tweet.user.screen_name}" %></td>
       </tr>
     <% end %>
+  </tbody>
 </table>
+<div class="clear"></div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#result-table').DataTable({
+        "sDom": 'T<"clear"><"fg-toolbar ui-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix"f>lrt<"fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix"ip>',
+        "bJQueryUI": true,
+        "bAutoWidth": true,
+        "bFilter": false,
+        "bLengthChange": false,
+        "length": 10,
+        "bInfo": true,
+        "aoColumns": [
+            { "sSortDataType": "dom-text"},
+            { "sSortDataType": "dom-text"}
+        ]
+    });
+});
+</script>

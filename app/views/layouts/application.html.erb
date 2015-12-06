@@ -7,84 +7,33 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="container-fluid">
-  <div class="row">
-    <!-- Left pane -->
-    <div class="col-xs-2 sidebar">
-    </div>
-    <!--middle pane-->
-    <div class="col-xs-8">
-<!-- header section -->
-<header class="navbar navbar-fixed-top navbar-default">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-xs-2">
-        <!--header left pane-->
-      </div>
-      <div class="col-xs-8">
-        <!--header middle pane-->
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Twitter Query Engine</a>
-        </div>
-        <nav>
-          <ul class="nav navbar-nav">
-            <li><%= link_to "Home",   root_path %></li>
-            <li><%= link_to "Admin",   main_admin_path %></li>
-            <li><%= link_to "Log in", '#' %></li>
-          </ul>
-        </nav>
-        <div class="nav navbar-text">
-          <%= render 'layouts/user_widget' %>
-        </div>
-      </div>
-      <div class="col-xs-2">
-        <!--header right pane -->
-      </div>
-    </div>
-  </div>
-</header><!-- end of header content-->
 
-<!-- content section -->
-<div class="container-fluid">
-  <% if notice.present? %>
-    <p class="warning"><%= notice %></p>
-  <% end %>
-  <% if alert.present? %>
-    <p class="alert warning"><%= alert %></p>
-  <% end %>
+<div id="page-container" class="container-fluid">
 
-  <%= yield %>
-</div><!-- end of main content-->
+  <%= render "layouts/header" %>
 
-<!-- footer section -->
-<footer class="footer navbar-fixed-bottom navbar-default">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-xs-2">
-      </div>
-      <div class="col-xs-8">
-        <div class="nav navbar-text">
-          Twitter Query Engine Copyright <%= Time.now.year %>
-        </div>
-        <nav>
-          <ul class="nav navbar-nav">
-            <li><%= link_to "Home",   root_path %></li>
-            <li><%= link_to "About", '#' %></li>
-            <li><a href="http://news.railstutorial.org/">News</a></li>
-          </ul>
-        </nav>
-      </div>
-      <div class="col-xs-2">
-      </div>
+  <div id="content-container" class="row">
+    <!-- Left sidebar -->
+    <div id="left-container" class="col-xs-2 col-md-2 sidebar"></div>
+
+    <!-- content-->
+    <div id="content" class="col-xs-8 col-md-8">
+
+      <!-- content section -->
+      <%= render "layouts/content" %>
+
     </div>
-  </div>
-</footer><!-- end of footer content-->
 
-<!-- right sidebar-->
-</div>
-    <div class="col-xs-2 sidebar">
-    </div>
-</div><!-- end of right sidebar-->
-</div>
+    <!-- right sidebar-->
+    <div id="right-container" class="col-xs-2 col-md-2 sidebar container-fluid"></div>
+
+
+
+  </div>  <!-- end of row -->
+
+  <!-- footer -->
+  <%= render "layouts/footer" %>
+
+</div><!-- end of page-container -->
 </body>
 </html>
