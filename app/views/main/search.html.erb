@@ -1,2 +1,9 @@
-<h1>Main#search</h1>
-<p>Find me in app/views/main/search.html.erb</p>
+<% content_for :title do %>Search<% end %>
+<h1>Search</h1>
+<p>
+  Welcome to the Twitter Query Engine. Here is where you enter your search to
+  start crawling through Twitter. Select the type of search you would like to
+  conduct, and then enter your query.
+</p>
+
+<%= render 'form' %>

@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   get 'main/admin'
 
-  post 'main/search'
+  get 'main/search'
+
+  post 'main/query'
 
   get 'main/result'
 

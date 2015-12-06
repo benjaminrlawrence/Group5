@@ -11,14 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151110220553) do
+ActiveRecord::Schema.define(version: 20151206210029) do
 
   create_table "queries", force: :cascade do |t|
-    t.text    "created_at",   null: false
-    t.text    "updated_at",   null: false
-    t.text    "query_type"
-    t.text    "search_query"
-    t.integer "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.text     "query_type"
+    t.text     "search_query"
+    t.integer  "user_id"
+    t.integer  "searched_limit"
+    t.date     "seacrhed_date"
   end
 
   create_table "users", force: :cascade do |t|
