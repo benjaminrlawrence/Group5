@@ -1,11 +1,16 @@
 <% content_for :title do %>Home<% end %>
+
 <h1>Welcome
   <% if user_signed_in? %>
    <%= current_user.email %>
   <% end %>
 </h1>
 <p>
+  <% if !@last.nil? %>
   You last searched for: <%= @last.search_query %> <!-- query db -->
+  <% end %>
 </p>
-
-<%= link_to 'New Search', main_search_path, class: 'btn-xs btn-success' %>
+Click <%= link_to 'New Search', main_search_path, class: 'btn-xs btn-success' %> to start a new twitter feed.
+<% if !user_signed_in? %>
+    Or log in  to go to your account.
+<% end %>
