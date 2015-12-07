@@ -2,11 +2,15 @@
     
         General Search: <%= f.text_field(:keyword) %> <br />
 		<%= label_tag(:entities, "Return entities?") %>
-        <%= check_box_tag(:entities) %> <br />
-        Number of Results: <%= f.text_field(:number_results) %> <br />
-        (max 32,000) <br />
+        <%= f.check_box(:entities) %> <br />
+        Number of Results: <%= f.text_field(:count) %> <br />
+        (Max 100) <br />
+        Result Type: <%= f.select :result_type, [['Recent','recent'],['Mixed','mixed'],['Popular','popular'],['None', 'False']] %>
+            <p> * mixed: Include both popular and real time results in the response.<br />
+              * recent: return only the most recent results in the response<br />
+              * popular: return only the most popular results in the response.</p><br />
         <%= label_tag(:recent, "Return only recent results?") %>
-        <%= check_box_tag(:recent) %> <br />
+        <%= f.check_box(:recent) %> <br />
         Return results until: <%= f.text_field(:search_date, "data-provide" => 'datepicker') %> <br /><br />
 
 		<%= submit_tag "Search"%>
