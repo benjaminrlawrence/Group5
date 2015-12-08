@@ -5,11 +5,61 @@
    <%= current_user.email %>
   <% end %>
 </h1>
-<p>
+
   <% if !@last.nil? %>
-  You last searched for: <%= @last.search_query %> <!-- query db -->
+    <p>
+  Below is your last five seach words:
+      </p>
+    <table id="result-table" class="table" width="100%">
+      <thead>
+      <tr>
+        <th>Search Word(s)</th>
+        <th>Search Limit</th>
+        <th>Query Type</th>
+        <th>Search Date</th>
+        <th>Created</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @last.each do |last| %>
+          <tr>
+            <td><%= last.search_query %></td>
+            <td><%= last.search_limit %></td>
+            <td><%= last.query_type %></td>
+            <td><%= last.search_date %></td>
+            <td><%= DateTime.parse(last.created_at).strftime("%m/%d/%y at %I:%M %p") %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="clear"></div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('#result-table').DataTable({
+                "bJQueryUI": true,
+                "bAutoWidth": true,
+                "bAutoHeight": false,
+                "bFilter": false,
+                "bLengthChange": false,
+                "length": 5,
+                "iDisplayLength": 5,
+                "bInfo": false,
+                "bPaginate": false,
+                "aoColumns": [
+                    { "sSortDataType": "dom-text"},
+                    { "sSortDataType": "dom-text"},
+                    { "sSortDataType": "dom-text"},
+                    { "sSortDataType": "dom-text"},
+                    { "sSortDataType": "dom-text"}
+                ]
+            });
+
+        });
+    </script>
   <% end %>
-</p>
+<br /><br />
 Click <%= link_to 'New Search', main_search_path, class: 'btn-xs btn-success' %> to start a new twitter feed.
 <% if !user_signed_in? %>
     Or log in  to go to your account.
