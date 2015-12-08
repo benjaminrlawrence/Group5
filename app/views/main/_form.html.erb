@@ -5,13 +5,11 @@
         <%= f.check_box(:entities) %> <br />
         Number of Results: <%= f.text_field(:count) %> <br />
         (Max 100) <br />
-        Result Type: <%= f.select :result_type, [['Recent','recent'],['Mixed','mixed'],['Popular','popular'],['None', 'False']] %>
+        Result Type: <%= f.select :result_type, [['Recent','recent'],['Mixed','mixed'],['Popular','popular']] %>
             <p> * mixed: Include both popular and real time results in the response.<br />
               * recent: return only the most recent results in the response<br />
               * popular: return only the most popular results in the response.</p><br />
-        <%= label_tag(:recent, "Return only recent results?") %>
-        <%= f.check_box(:recent) %> <br />
-        Return results until: <%= f.text_field(:search_date, "data-provide" => 'datepicker') %> <br /><br />
+        Return results until: <%= f.text_field(:search_date, "data-provide" => 'datepicker', 'data-date-autoclose' => 'true',) %> <br /><br />
 
 		<%= submit_tag "Search"%>
 <% end %>

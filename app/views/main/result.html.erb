@@ -10,8 +10,8 @@
 <br />
 <p>
   This is the result of your query. You searched for the word(s): <em><%= keyword %></em>
-
 </p>
+
 <table id="result-table" class="table" width="100%">
   <thead>
   <tr>
@@ -26,7 +26,7 @@
       <tr>
         <td><%= "#{tweet.text}" %></td>
         <td><%= link_to "#{tweet.user.screen_name}", "https://www.twitter.com/#{tweet.user.screen_name}" %></td>
-        <td><%= time.strftime("%m/%d/%y at %I:%M %p") %></td>
+        <td><%= time.in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%y at %I:%M %p") %></td>
       </tr>
     <% end %>
   </tbody>
@@ -35,6 +35,7 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
+
     $('#result-table').DataTable({
         "bJQueryUI": true,
         "bAutoWidth": true,

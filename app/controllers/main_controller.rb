@@ -3,7 +3,7 @@ class MainController < ApplicationController
   def index
     if user_signed_in?
       session[:current_user_id] = current_user.id
-      @last = Query.find_by_user_id(current_user.id)
+      @last = Query.where(:user_id => current_user.id).limit(5).order('created_at desc')
     else
       session[:current_user_id] = nil
       @last = nil
@@ -25,8 +25,10 @@ class MainController < ApplicationController
       search.search_query = params[:query][:keyword]
       search.query_type = params[:query][:result_type]
       search.user_id = current_user.id
-      search.search_limit = params[:query][:count]
-      search.search_date = params[:query][:search_date]
+      search.search_limit = params[:query][:count].present? ? params[:query][:count] : 0
+      if params[:query][:search_date].present?
+        search.search_date = Date.strptime(params[:query][:search_date], '%m/%d/%Y').strftime("%Y-%m-%d")
+      end
       search.save
 
       redirect_to :action => "user_result", :id => search.id
@@ -34,9 +36,8 @@ class MainController < ApplicationController
       cookies[:general] = params[:query][:keyword]
 	    cookies[:entities] = params[:query][:entities]
       cookies[:count] = params[:query][:count]
-      cookies[:recent] = params[:query][:recent]
       cookies[:result_type] = params[:query][:result_type]
-      cookies[:until] = params[:query][:search_date]
+      cookies[:until] = Date.strptime(params[:query][:search_date], '%m/%d/%Y').strftime("%Y-%m-%d")
 
       redirect_to :action => "result"
 
@@ -64,8 +65,8 @@ class MainController < ApplicationController
 		end
 	end
 		
-	# @tweets = client.search(cookies[:general], :since=> => cookies[:since], :include_entities=>cookies[:entities], :count=>cookies[:num_results].to_i)
-    @tweets = client.search(cookies[:general], :lang => "en", :result_type => cookies[:result_type]).take(cookies[:count].to_i)
+	  #@tweets = client.search(cookies[:general], :since=> => cookies[:since], :include_entities=>cookies[:entities], :count=>cookies[:num_results].to_i)
+    #@tweets = client.search(cookies[:general], :lang => "en", :result_type => cookies[:result_type]).take(cookies[:count].to_i)
   end
 
   def user_result
@@ -76,8 +77,13 @@ class MainController < ApplicationController
       config.access_token        = "2512534718-1dHuDxdtZphrkoKA8TJqAsvoc23kxBhRmXJ42BF"
       config.access_token_secret = "5wnW2BhxjPLWYefCSVsvqdfRYKewuSHsZEZhaB7drJ2zF"
     end
-    @tweets = client.search(@query.search_query, :lang => "en", :result_type => "recent").take(@query.search_limit)
-
+    if !@query.search_date.empty?
+      # until is currently not working going back to default
+      # @tweets = client.search(@query.search_query, :lang => "en", :since => @query.search_date, :until => @query.search_date, :result_type => @query.query_type).take(@query.search_limit)
+      @tweets = client.search(@query.search_query, :lang => "en", :result_type => @query.query_type).take(@query.search_limit)
+    else
+      @tweets = client.search(@query.search_query, :lang => "en", :result_type => @query.query_type).take(@query.search_limit)
+    end
     render 'result'
   end
 
