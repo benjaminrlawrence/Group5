@@ -23,11 +23,11 @@
       <tbody>
       <% @last.each do |last| %>
           <tr>
-            <td><%= last.search_query %></td>
+            <td><%= link_to last.search_query, main_user_result_path(:id => last.id) %></td>
             <td><%= last.search_limit %></td>
             <td><%= last.query_type %></td>
             <td><%= last.search_date %></td>
-            <td><%= DateTime.parse(last.created_at).strftime("%m/%d/%y at %I:%M %p") %></td>
+            <td><%= DateTime.parse(last.created_at).in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%y at %I:%M %p") %></td>
           </tr>
       <% end %>
       </tbody>
